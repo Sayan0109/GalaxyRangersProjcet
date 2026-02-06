@@ -7,14 +7,14 @@ public class Projectile : MonoBehaviour, IProjectile
 
     [Header("Damage")]
     [SerializeField] private float damage = 20f;
-    public float Damage => damage;  // реализация IProjectile
+    public float Damage => damage;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IProjectile
 
     void Start()
     {
         Destroy(gameObject, lifetime);
     }
 
-    // движение
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
@@ -22,16 +22,16 @@ public class Projectile : MonoBehaviour, IProjectile
 
     private void OnTriggerEnter(Collider other)
     {
-        // наносим урон только объектам с IHealth
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ IHealth
         if (other.TryGetComponent(out IHealth health))
         {
             health.TakeDamage(Damage);
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject); //РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ
     }
 
-    // возможность установить damage извне (от TurretController)
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ damage пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ TurretController)
     public void SetDamage(float value)
     {
         damage = value;
